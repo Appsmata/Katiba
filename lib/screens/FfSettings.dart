@@ -25,7 +25,7 @@ class FfSettingsState extends State<FfSettings> {
 
 	    child: Scaffold(
 	    appBar: AppBar(
-        title: Text('Kamusi Settings'),
+        title: Text('Katiba Settings'),
 		    leading: IconButton(icon: Icon(
 				    Icons.arrow_back),
 				    onPressed: () {

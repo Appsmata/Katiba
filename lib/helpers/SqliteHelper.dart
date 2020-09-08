@@ -6,9 +6,9 @@ import 'dart:async';
 import 'dart:io';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:kamusi/models/GenericModel.dart';
-import 'package:kamusi/models/NenoModel.dart';
-import 'package:kamusi/utils/Constants.dart';
+import 'package:katiba/models/GenericModel.dart';
+import 'package:katiba/models/NenoModel.dart';
+import 'package:katiba/utils/Constants.dart';
 
 class SqliteHelper {
   static SqliteHelper sqliteHelper; // Singleton DatabaseHelper
@@ -34,7 +34,7 @@ class SqliteHelper {
   Future<Database> initializeDatabase() async {
     // Get the directory path for both Android and iOS to store database.
     Directory docsDirectory = await getApplicationDocumentsDirectory();
-    String path = join(docsDirectory.path, "Kamusi.db");
+    String path = join(docsDirectory.path, "Katiba.db");
 
     // Open/create the database at a given path
     var vsbDatabase = await openDatabase(path, version: 1, onCreate: _createDb);

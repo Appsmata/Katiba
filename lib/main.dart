@@ -6,10 +6,10 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:kamusi/helpers/AppSettings.dart';
-import 'package:kamusi/screens/BbSplash.dart';
-import 'package:kamusi/screens/AppStart.dart';
-import 'package:kamusi/utils/Themes.dart';
+import 'package:katiba/helpers/AppSettings.dart';
+import 'package:katiba/screens/BbSplash.dart';
+import 'package:katiba/screens/AppStart.dart';
+import 'package:katiba/utils/Themes.dart';
 
 void main() {
   if (DebugMode.isInDebugMode) {
@@ -46,7 +46,7 @@ class _MyApplication extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Kamusi',
+      title: 'Katiba',
       theme: Provider.of<AppSettings>(context).isDarkMode ? asDarkTheme : asLightTheme,
       home: new AppStart(),
       navigatorObservers: [

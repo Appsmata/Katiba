@@ -1,9 +1,9 @@
 //This file declares the strings used throughout the app
 
 class SharedPreferenceKeys {
-  static const String Kamusidb_Loaded = "kamusi_database_loaded";
-  static const String User = "kamusi_user";
-  static const String DarkMode = "kamusi_dark_mode";
+  static const String Katibadb_Loaded = "katiba_database_loaded";
+  static const String User = "katiba_user";
+  static const String DarkMode = "katiba_dark_mode";
 }
 
 class AsProgressDialogTitles {
@@ -13,9 +13,9 @@ class AsProgressDialogTitles {
 }
 
 class Texts {
-  static const String appName = "Kamusi Ya Kiswahili";
+  static const String appName = "Katiba Ya Kiswahili";
   static const String campaign =
-      "\n\n#KamusiYaKiswahili #KiswahiliKitukuzwe \n\nhttps://play.google.com/store/apps/details?id=com.kazibora.kamusi ";
+      "\n\n#KatibaYaKiswahili #KiswahiliKitukuzwe \n\nhttps://play.google.com/store/apps/details?id=com.kazibora.katiba ";
   static const String visawe_vya = "\n\nVisawe (synonyms) vya neno ";
   static const String searchNow = "Tafuta ";
   static const String maneno = 'maneno';

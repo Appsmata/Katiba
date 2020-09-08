@@ -1,5 +1,5 @@
-name: kamusi
-description: kiswahili kitukuzwe
+name: katiba
+description: kenyan constitution
 
 version: 1.2.7+1
 
@@ -60,7 +60,7 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/kamusi.db
+    - assets/katiba.db
     - assets/images/appicon.png
     - assets/images/donation_airtel.png
     - assets/images/donation_equitel.png

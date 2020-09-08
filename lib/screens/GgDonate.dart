@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:backdrop/backdrop.dart';
-import 'package:kamusi/screens/FfSettingsQuick.dart';
+import 'package:katiba/screens/FfSettingsQuick.dart';
 import 'package:vertical_tabs/vertical_tabs.dart';
-import 'package:kamusi/utils/Constants.dart';
+import 'package:katiba/utils/Constants.dart';
 
 class GgDonate extends StatefulWidget {
   @override

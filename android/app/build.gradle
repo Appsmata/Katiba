@@ -42,7 +42,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.kazibora.kamusi"
+        applicationId "com.kazibora.katiba"
         minSdkVersion 18
         targetSdkVersion 29
         versionCode 3

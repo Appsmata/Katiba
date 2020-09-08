@@ -1,2 +1,2 @@
-# Kamusi
-Kamusi ya Kiswahili: Kiswahili kitukuzwe
+# Katiba ya Kenya
+The Kenyan Constitution

@@ -3,12 +3,12 @@
 import 'package:animated_floatactionbuttons/animated_floatactionbuttons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:kamusi/helpers/SqliteHelper.dart';
-import 'package:kamusi/models/NenoModel.dart';
+import 'package:katiba/helpers/SqliteHelper.dart';
+import 'package:katiba/models/NenoModel.dart';
 import 'package:backdrop/backdrop.dart';
-import 'package:kamusi/screens/FfSettingsQuick.dart';
+import 'package:katiba/screens/FfSettingsQuick.dart';
 import 'package:share/share.dart';
-import 'package:kamusi/utils/Constants.dart';
+import 'package:katiba/utils/Constants.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_html/style.dart';
 

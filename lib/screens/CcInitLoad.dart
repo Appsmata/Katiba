@@ -2,17 +2,17 @@
 
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:kamusi/models/GenericModel.dart';
-import 'package:kamusi/models/NenoModel.dart';
-import 'package:kamusi/models/callbacks/Generic.dart';
-import 'package:kamusi/models/callbacks/Neno.dart';
-import 'package:kamusi/utils/Constants.dart';
-import 'package:kamusi/utils/Preferences.dart';
-import 'package:kamusi/helpers/SqliteAssets.dart';
-import 'package:kamusi/helpers/SqliteHelper.dart';
-import 'package:kamusi/screens/AppStart.dart';
-import 'package:kamusi/widgets/AsTextView.dart';
-import 'package:kamusi/widgets/AsLineProgress.dart';
+import 'package:katiba/models/GenericModel.dart';
+import 'package:katiba/models/NenoModel.dart';
+import 'package:katiba/models/callbacks/Generic.dart';
+import 'package:katiba/models/callbacks/Neno.dart';
+import 'package:katiba/utils/Constants.dart';
+import 'package:katiba/utils/Preferences.dart';
+import 'package:katiba/helpers/SqliteAssets.dart';
+import 'package:katiba/helpers/SqliteHelper.dart';
+import 'package:katiba/screens/AppStart.dart';
+import 'package:katiba/widgets/AsTextView.dart';
+import 'package:katiba/widgets/AsLineProgress.dart';
 import 'package:sqflite/sqflite.dart';
 
 class CcInitLoad extends StatefulWidget {
@@ -284,7 +284,7 @@ class CcInitLoadState extends State<CcInitLoad> {
     await saveGenericData(Texts.misemo, misemo);
     await saveGenericData(Texts.methali, methali);
 
-    Preferences.setKamusidbLoaded(true);
+    Preferences.setKatibadbLoaded(true);
     Navigator.pushReplacement(context, new MaterialPageRoute(builder: (context) => new AppStart()));
   }
 }

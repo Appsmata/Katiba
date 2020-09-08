@@ -7,9 +7,9 @@ import 'package:flutter/services.dart';
 import 'package:sqflite/sqflite.dart';
 import 'dart:async';
 import 'package:path/path.dart';
-import 'package:kamusi/models/callbacks/Generic.dart';
-import 'package:kamusi/models/callbacks/Neno.dart';
-import 'package:kamusi/utils/Constants.dart';
+import 'package:katiba/models/callbacks/Generic.dart';
+import 'package:katiba/models/callbacks/Neno.dart';
+import 'package:katiba/utils/Constants.dart';
 
 class SqliteAssets {
   static SqliteAssets sqliteHelper; // Singleton DatabaseHelper
@@ -33,9 +33,9 @@ class SqliteAssets {
   }
 
   Future<Database> initializeDatabase() async {
-    //String path = join("assets", "kamusi.db");
+    //String path = join("assets", "katiba.db");
     //await rootBundle.load(join("assets", "example.db"));
-    //var assetDatabase = await openDatabase("assets/kamusi.db", readOnly: true);
+    //var assetDatabase = await openDatabase("assets/katiba.db", readOnly: true);
     //return assetDatabase;
     var databasesPath = await getDatabasesPath();
     var path = join(databasesPath, "demo_asset_example.db");
@@ -46,7 +46,7 @@ class SqliteAssets {
     } catch (_) {}
       
     // Copy from asset
-    ByteData data = await rootBundle.load(join("assets", "kamusi.db"));
+    ByteData data = await rootBundle.load(join("assets", "katiba.db"));
     List<int> bytes = data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
     
     // Write and flush the bytes written

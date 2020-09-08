@@ -4,9 +4,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:kamusi/screens/CcInitLoad.dart';
-import 'package:kamusi/screens/DdHomeView.dart';
-import 'package:kamusi/utils/Preferences.dart';
+import 'package:katiba/screens/CcInitLoad.dart';
+import 'package:katiba/screens/DdHomeView.dart';
+import 'package:katiba/utils/Preferences.dart';
 
 class AppStart extends StatefulWidget {
   @override
@@ -37,11 +37,11 @@ class SplashPageState extends State<AppStart> {
   }
 
   void _handleTapEvent() async {
-    bool kamusidbLoaded = await Preferences.isKamusidbLoaded();
+    bool katibadbLoaded = await Preferences.isKatibadbLoaded();
 
       if (this.mounted) {
       setState(() {
-        if (kamusidbLoaded != null && kamusidbLoaded)
+        if (katibadbLoaded != null && katibadbLoaded)
         {
           Navigator.pushReplacement( context, new MaterialPageRoute(builder: (context) => new DdHomeView()));
         }

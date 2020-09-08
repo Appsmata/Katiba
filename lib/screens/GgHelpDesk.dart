@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:backdrop/backdrop.dart';
-import 'package:kamusi/screens/FfSettingsQuick.dart';
+import 'package:katiba/screens/FfSettingsQuick.dart';
 import 'package:vertical_tabs/vertical_tabs.dart';
-import 'package:kamusi/utils/Constants.dart';
+import 'package:katiba/utils/Constants.dart';
 
 class GgHelpDesk extends StatefulWidget {
   @override
@@ -31,7 +31,7 @@ class GgHelpDeskState extends State<GgHelpDesk> {
     details.add(
         "Iwapo unafurahia kitumizi (app) chetu au haufurahii tafadhali tujulishe kwa kuacha review yako kwenye Google Play Store");
     details.add(
-        "Iwapo wewe ni Msanidi Kitumizi (App Developer), source code ya kitumizi hiki yapatikana bila malipo kwenye GitHub:\n\n Https://GitHub.com/Kazibora/Kamusi");
+        "Iwapo wewe ni Msanidi Kitumizi (App Developer), source code ya kitumizi hiki yapatikana bila malipo kwenye GitHub:\n\n Https://GitHub.com/Kazibora/Katiba");
   }
 
   @override

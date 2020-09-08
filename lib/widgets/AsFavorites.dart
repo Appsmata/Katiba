@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:kamusi/models/NenoModel.dart';
-import 'package:kamusi/helpers/SqliteHelper.dart';
-import 'package:kamusi/screens/EeContentView.dart';
-import 'package:kamusi/utils/Constants.dart';
-import 'package:kamusi/widgets/AsProgressWidget.dart';
+import 'package:katiba/models/NenoModel.dart';
+import 'package:katiba/helpers/SqliteHelper.dart';
+import 'package:katiba/screens/EeContentView.dart';
+import 'package:katiba/utils/Constants.dart';
+import 'package:katiba/widgets/AsProgressWidget.dart';
 
 class AsFavorites extends StatefulWidget {
   @override

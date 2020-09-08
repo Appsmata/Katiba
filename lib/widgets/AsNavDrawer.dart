@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kamusi/screens/GgDonate.dart';
-import 'package:kamusi/screens/GgHelpDesk.dart';
+import 'package:katiba/screens/GgDonate.dart';
+import 'package:katiba/screens/GgHelpDesk.dart';
 
 class AsNavDrawer extends StatefulWidget {
   @override
@@ -39,7 +39,7 @@ class AsNavDrawerState extends State<AsNavDrawer> {
 
   Widget drawerHeader() {
     return UserAccountsDrawerHeader(
-      accountName: Text('Kamusi v1.6.0'),
+      accountName: Text('Katiba v1.6.0'),
       accountEmail: Text("Kiswahili Kitukuzwe"),
       currentAccountPicture: CircleAvatar(
         child: new Image(

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:kamusi/models/GenericModel.dart';
-import 'package:kamusi/helpers/SqliteHelper.dart';
-import 'package:kamusi/utils/Constants.dart';
-import 'package:kamusi/widgets/AsProgressWidget.dart';
+import 'package:katiba/models/GenericModel.dart';
+import 'package:katiba/helpers/SqliteHelper.dart';
+import 'package:katiba/utils/Constants.dart';
+import 'package:katiba/widgets/AsProgressWidget.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_html/style.dart';
 

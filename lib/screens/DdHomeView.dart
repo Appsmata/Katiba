@@ -1,10 +1,10 @@
 // This file declares the home screen of the app
 
 import 'package:flutter/material.dart';
-import 'package:kamusi/utils/Constants.dart';
-import 'package:kamusi/widgets/AsSearchGeneric.dart';
-import 'package:kamusi/widgets/AsSearchNeno.dart';
-import 'package:kamusi/widgets/AsNavDrawer.dart';
+import 'package:katiba/utils/Constants.dart';
+import 'package:katiba/widgets/AsSearchGeneric.dart';
+import 'package:katiba/widgets/AsSearchNeno.dart';
+import 'package:katiba/widgets/AsNavDrawer.dart';
 
 class DdHomeView extends StatefulWidget {
   DdHomeView();
