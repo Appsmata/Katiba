@@ -7,24 +7,28 @@ class SharedPreferenceKeys {
 }
 
 class AsProgressDialogTitles {
-  static const String inProgress = "Inaendelea ...";
-  static const String gettingReady = "Matayarisho ...";
-  static const String somePatience = "Eish! ... Subiri kidogo ...";
+  static const String inProgress = "In Progress ...";
+  static const String gettingReady = "Getting Ready ...";
+  static const String somePatience = "Eish! ... Just a minute ...";
 }
 
 class Texts {
-  static const String appName = "Katiba Ya Kiswahili";
+  static const String appName = "Kenyan Constitution";
   static const String campaign =
-      "\n\n#KatibaYaKiswahili #KiswahiliKitukuzwe \n\nhttps://play.google.com/store/apps/details?id=com.kazibora.katiba ";
-  static const String visawe_vya = "\n\nVisawe (synonyms) vya neno ";
-  static const String searchNow = "Tafuta ";
-  static const String maneno = 'maneno';
+      "\n\n#Katiba #SeriouslyKenyan \n\nhttps://play.google.com/store/apps/details?id=com.jackson_siro.katiba ";
+  static const String visawe_vya = "\n\nVisawe (synonyms) vya katiba ";
+  static const String searchNow = "Search ";
+  static const String katiba = 'katiba';
   static const String methali = 'methali';
   static const String misemo = 'misemo';
   static const String nahau = 'nahau';
 
   static const String id = 'id';
+  static const String type = 'type';
+  static const String refid = 'refid';
+  static const String number = 'number';
   static const String title = 'title';
+  static const String body = 'body';
   static const String maana = 'maana';
   static const String visawe = 'visawe';
   static const String mnyambuliko = 'mnyambuliko';
@@ -35,81 +39,32 @@ class Texts {
 
 class Tooltips {
   static const String copyThis = "Nakili kwa Clipboard";
-  static const String shareThis = "Shiriki";
+  static const String shareThis = "Share";
 }
 
 class SnackBarText {
   static const String noInternetConnection = "No internet connection";
-  static const String nenoCopied = "Neno copied to clipboard!";
-  static const String nenoLiked = " liked!";
-  static const String nenoDisliked = " disliked!";
+  static const String itemCopied = " copied to clipboard!";
+  static const String itemLiked = " liked!";
+  static const String itemDisliked = " disliked!";
 }
 
 class Queries {
-  static const String createManenoTable = 'CREATE TABLE ' +
-      Texts.maneno +
+  static const String createKatibaTable = 'CREATE TABLE ' +
+      Texts.katiba +
       '(' +
       Texts.id +
       ' INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, ' +
-      Texts.title +
-      ' VARCHAR(100), ' +
-      Texts.maana +
-      ' VARCHAR(300), ' +
-      Texts.visawe +
-      ' VARCHAR(100), ' +
-      Texts.mnyambuliko +
-      ' VARCHAR(100),' +
-      Texts.notes +
-      ' VARCHAR(500), ' +
-      Texts.isfav +
+      Texts.type +
+      ' VARCHAR(20), ' +
+      Texts.refid +
       ' INTEGER NOT NULL DEFAULT 0, ' +
-      Texts.views +
-      ' INTEGER NOT NULL DEFAULT 0' +
-      ");";
-
-  static const String createMethaliTable = 'CREATE TABLE ' +
-      Texts.methali +
-      '(' +
-      Texts.id +
-      ' INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, ' +
-      Texts.title +
-      ' VARCHAR(100), ' +
-      Texts.maana +
-      ' VARCHAR(500), ' +
-      Texts.notes +
-      ' VARCHAR(500), ' +
-      Texts.isfav +
+      Texts.number +
       ' INTEGER NOT NULL DEFAULT 0, ' +
-      Texts.views +
-      ' INTEGER NOT NULL DEFAULT 0' +
-      ");";
-
-  static const String createMisemoTable = 'CREATE TABLE ' +
-      Texts.misemo +
-      '(' +
-      Texts.id +
-      ' INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, ' +
       Texts.title +
       ' VARCHAR(100), ' +
-      Texts.maana +
-      ' VARCHAR(500), ' +
-      Texts.notes +
-      ' VARCHAR(500), ' +
-      Texts.isfav +
-      ' INTEGER NOT NULL DEFAULT 0, ' +
-      Texts.views +
-      ' INTEGER NOT NULL DEFAULT 0' +
-      ");";
-
-  static const String createNahauTable = 'CREATE TABLE ' +
-      Texts.nahau +
-      '(' +
-      Texts.id +
-      ' INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, ' +
-      Texts.title +
-      ' VARCHAR(100), ' +
-      Texts.maana +
-      ' VARCHAR(500), ' +
+      Texts.body +
+      ' VARCHAR(2000),' +
       Texts.notes +
       ' VARCHAR(500), ' +
       Texts.isfav +

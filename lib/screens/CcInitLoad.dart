@@ -2,10 +2,8 @@
 
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:katiba/models/GenericModel.dart';
-import 'package:katiba/models/NenoModel.dart';
-import 'package:katiba/models/callbacks/Generic.dart';
-import 'package:katiba/models/callbacks/Neno.dart';
+import 'package:katiba/models/KatibaModel.dart';
+import 'package:katiba/models/callbacks/Katiba.dart';
 import 'package:katiba/utils/Constants.dart';
 import 'package:katiba/utils/Preferences.dart';
 import 'package:katiba/helpers/SqliteAssets.dart';
@@ -23,7 +21,8 @@ class CcInitLoad extends StatefulWidget {
 }
 
 class CcInitLoadState extends State<CcInitLoad> {
-  AsTextView textIndicator = AsTextView.setUp("Vruuummh! ...", 25, true);
+  AsTextView textIndicator =
+      AsTextView.setUp(AsProgressDialogTitles.gettingReady, 25, true);
   AsTextView textProgress = AsTextView.setUp("", 25, true);
   AsLineProgress lineProgress = AsLineProgress.setUp(300, 0);
   final globalKey = new GlobalKey<ScaffoldState>();
@@ -31,21 +30,15 @@ class CcInitLoadState extends State<CcInitLoad> {
   SqliteHelper db = SqliteHelper();
   SqliteAssets adb = SqliteAssets();
 
-  List<Neno> nenos;
-  List<Generic> nahau;
-  List<Generic> misemo;
-  List<Generic> methali;
+  List<Katiba> katibas;
 
   Future<Database> dbAssets;
   Future<Database> dbFuture;
 
   @override
   Widget build(BuildContext context) {
-    if (nenos == null) {
-      nenos = List<Neno>();
-      nahau = List<Generic>();
-      misemo = List<Generic>();
-      methali = List<Generic>();
+    if (katibas == null) {
+      katibas = List<Katiba>();
       requestData();
     }
 
@@ -93,7 +86,7 @@ class CcInitLoadState extends State<CcInitLoad> {
     return new Center(
       child: new Container(
         child: new CircularProgressIndicator(
-          valueColor: new AlwaysStoppedAnimation(Colors.blue)),
+            valueColor: new AlwaysStoppedAnimation(Colors.green)),
         margin: EdgeInsets.only(top: 270),
       ),
     );
@@ -107,7 +100,7 @@ class CcInitLoadState extends State<CcInitLoad> {
         padding: const EdgeInsets.symmetric(horizontal: 10),
         decoration: new BoxDecoration(
             color: Colors.white,
-            border: Border.all(color: Colors.blue),
+            border: Border.all(color: Colors.green),
             boxShadow: [BoxShadow(blurRadius: 5)],
             borderRadius: new BorderRadius.all(new Radius.circular(10))),
         child: new Stack(
@@ -164,58 +157,19 @@ class CcInitLoadState extends State<CcInitLoad> {
   void requestData() async {
     dbAssets = adb.initializeDatabase();
     dbAssets.then((database) {
-      Future<List<Neno>> nenoListAsset = adb.getNenoList();
-      nenoListAsset.then((nenoList) {
+      Future<List<Katiba>> katibaListAsset = adb.getKatibaList();
+      katibaListAsset.then((katibaList) {
         setState(() {
-          nenos = nenoList;
-          requestNahauData();
-        });
-      });
-    });
-  }
-
-  void requestNahauData() async {
-    dbAssets = adb.initializeDatabase();
-    dbAssets.then((database) {
-      Future<List<Generic>> nahauListAsset = adb.getGenericList(Texts.nahau);
-      nahauListAsset.then((nahauList) {
-        setState(() { 
-          nahau = nahauList; 
-          requestMisemoData();
-        });
-      });
-    });
-  }
-
-  void requestMisemoData() async {
-    dbAssets = adb.initializeDatabase();
-    dbAssets.then((database) {
-      Future<List<Generic>> misemoListAsset = adb.getGenericList(Texts.misemo);
-      misemoListAsset.then((misemoList) {
-        setState(() { 
-          misemo = misemoList;
-          requestMethaliData();
-        });
-      });
-    });
-  }
-    
-  void requestMethaliData() async {
-    dbAssets = adb.initializeDatabase();
-    dbAssets.then((database) {
-      Future<List<Generic>> methaliListAsset = adb.getGenericList(Texts.methali);
-      methaliListAsset.then((methaliList) {
-        setState(() {  
-          methali = methaliList;
+          katibas = katibaList;
           _goToNextScreen();
         });
       });
     });
   }
-  
-  Future<void> saveManenoData() async {
-    for (int i = 0; i < nenos.length; i++) {
-      int progress = (i / nenos.length * 100).toInt();
+
+  Future<void> saveMakatibaData() async {
+    for (int i = 0; i < katibas.length; i++) {
+      int progress = (i / katibas.length * 100).toInt();
       String progresStr = (progress / 100).toStringAsFixed(1);
 
       textProgress.setText(progress.toString() + " %");
@@ -223,68 +177,38 @@ class CcInitLoadState extends State<CcInitLoad> {
 
       switch (progress) {
         case 1:
-          textIndicator.setText("Moja...");
-          break;
-        case 2:
-          textIndicator.setText("Mbili...");
-          break;
-        case 3:
-          textIndicator.setText("Tatu ...");
-          break;
-        case 4:
-          textIndicator.setText("Inapakia ...");
-          break;
-        case 10:
-          textIndicator.setText("Inapakia maneno ...");
+          textIndicator.setText("Loading data ...");
           break;
         case 20:
-          textIndicator.setText("Kuwa mvumilivu ...");
+          textIndicator.setText("Be patient ...");
           break;
         case 40:
-          textIndicator.setText("Mvumilivu hula mbivu ...");
+          textIndicator.setText("Because patience pays ...");
           break;
         case 75:
-          textIndicator.setText("Asante kwa uvumilivu wako!");
+          textIndicator.setText("Thanks for your patience!");
           break;
         case 85:
-          textIndicator.setText("Hatimaye");
+          textIndicator.setText("Finally!");
           break;
         case 95:
-          textIndicator.setText("Karibu tumalizie");
+          textIndicator.setText("Almost done");
           break;
       }
 
-      Neno item = nenos[i];
+      Katiba item = katibas[i];
 
-      NenoModel neno = new NenoModel(item.title, item.maana, item.visawe, item.mnyambuliko);
-
-      await db.insertNeno(neno);
-    }
-  }
-
-  Future<void> saveGenericData(String table, List<Generic> genericlist) async {
-    for (int i = 0; i < genericlist.length; i++) {
-      int progress = (i / genericlist.length * 100).toInt();
-      String progresStr = (progress / 100).toStringAsFixed(1);
-
-      textProgress.setText(progress.toString() + " %");
-      lineProgress.setProgress(double.parse(progresStr));
-      textIndicator.setText(">> Inapakia " + table + " ...");
-      Generic item = genericlist[i];
-
-      GenericModel generic = new GenericModel(item.title, item.maana);
-
-      await db.insertGeneric(table, generic);
+      KatibaModel katiba = new KatibaModel(
+          item.type, item.refid, item.number, item.title, item.body);
+      await db.insertKatiba(katiba);
     }
   }
 
   Future<void> _goToNextScreen() async {
-    await saveManenoData();
-    await saveGenericData(Texts.nahau, nahau);
-    await saveGenericData(Texts.misemo, misemo);
-    await saveGenericData(Texts.methali, methali);
+    await saveMakatibaData();
 
     Preferences.setKatibadbLoaded(true);
-    Navigator.pushReplacement(context, new MaterialPageRoute(builder: (context) => new AppStart()));
+    Navigator.pushReplacement(
+        context, new MaterialPageRoute(builder: (context) => new AppStart()));
   }
 }

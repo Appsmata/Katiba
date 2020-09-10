@@ -6,25 +6,18 @@ class AsLineProgress extends StatefulWidget {
   final double progress;
   AsLineProgressState asTextViewState;
 
-  AsLineProgress(
-    {
-      this.measurement,
-      this.progress
-    }
-  );
+  AsLineProgress({this.measurement, this.progress});
 
   @override
-  createState() => asTextViewState = new AsLineProgressState( measurement: this.measurement, progress: this.progress );
+  createState() => asTextViewState = new AsLineProgressState(
+      measurement: this.measurement, progress: this.progress);
 
   void setProgress(double newProgress) {
     asTextViewState.setNewProgress(newProgress);
   }
 
   static Widget setUp(double widthValue, double progressValue) {
-    return new AsLineProgress(
-      measurement: widthValue ,
-      progress: progressValue   
-    );
+    return new AsLineProgress(measurement: widthValue, progress: progressValue);
   }
 }
 
@@ -32,7 +25,7 @@ class AsLineProgressState extends State<AsLineProgress> {
   double measurement;
   double progress;
 
-  AsLineProgressState( { this.measurement, this.progress } );
+  AsLineProgressState({this.measurement, this.progress});
 
   @override
   Widget build(BuildContext context) {
@@ -41,13 +34,14 @@ class AsLineProgressState extends State<AsLineProgress> {
       lineHeight: 40,
       percent: progress,
       linearStrokeCap: LinearStrokeCap.round,
-      progressColor: Colors.blueAccent,
+      progressColor: Colors.greenAccent,
       backgroundColor: Colors.white,
     );
   }
 
   void setNewProgress(double newProgress) {
-    setState(() { progress = newProgress; });
+    setState(() {
+      progress = newProgress;
+    });
   }
-
 }

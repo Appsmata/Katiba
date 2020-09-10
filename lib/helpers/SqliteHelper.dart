@@ -1,4 +1,4 @@
-// This file declares functions that manages the database that is created in the app 
+// This file declares functions that manages the database that is created in the app
 // when the app is installed for the first time
 
 import 'package:sqflite/sqflite.dart';
@@ -6,8 +6,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:katiba/models/GenericModel.dart';
-import 'package:katiba/models/NenoModel.dart';
+import 'package:katiba/models/KatibaModel.dart';
 import 'package:katiba/utils/Constants.dart';
 
 class SqliteHelper {
@@ -42,160 +41,106 @@ class SqliteHelper {
   }
 
   void _createDb(Database db, int newVersion) async {
-    await db.execute(Queries.createManenoTable);
-    await db.execute(Queries.createMethaliTable);
-    await db.execute(Queries.createMisemoTable);
-    await db.execute(Queries.createNahauTable);
+    await db.execute(Queries.createKatibaTable);
   }
 
-  //QUERIES FOR NENO
-  Future<int> insertNeno(NenoModel neno) async {
+  //QUERIES FOR KATIBA
+  Future<int> insertKatiba(KatibaModel katiba) async {
     Database db = await this.database;
-    neno.isfav = neno.views = 0;
+    katiba.isfav = katiba.views = 0;
 
-    var result = await db.insert(Texts.maneno, neno.toMap());
+    var result = await db.insert(Texts.katiba, katiba.toMap());
     return result;
   }
 
-  //QUERIES FOR NENO
-  Future<int> insertGeneric(String table, GenericModel generic) async {
-    Database db = await this.database;
-    generic.isfav = generic.views = 0;
-
-    var result = await db.insert(table, generic.toMap());
-    return result;
-  }
-
-  Future<int> favouriteNeno(NenoModel neno, bool isFavorited) async {
+  Future<int> favouriteKatiba(KatibaModel katiba, bool isFavorited) async {
     var db = await this.database;
     if (isFavorited)
-      neno.isfav = 1;
+      katiba.isfav = 1;
     else
-      neno.isfav = 0;
+      katiba.isfav = 0;
     var result = await db.rawUpdate('UPDATE ' +
-        Texts.maneno +
+        Texts.katiba +
         ' SET ' +
         Texts.isfav +
         '=' +
-        neno.isfav.toString() +
+        katiba.isfav.toString() +
         ' WHERE ' +
         Texts.id +
         '=' +
-        neno.id.toString());
+        katiba.id.toString());
     return result;
   }
 
-  Future<int> deleteNeno(int nenoID) async {
-    var db = await this.database;
-    int result = await db.rawDelete('DELETE FROM ' +
-        Texts.maneno +
-        ' WHERE ' +
-        Texts.id +
-        '=' +
-        nenoID.toString());
-    return result;
-  }
-
-  Future<int> getNenoCount() async {
+  Future<int> getKatibaCount() async {
     Database db = await this.database;
     List<Map<String, dynamic>> x =
-        await db.rawQuery('SELECT COUNT (*) from ' + Texts.maneno);
+        await db.rawQuery('SELECT COUNT (*) from ' + Texts.katiba);
     int result = Sqflite.firstIntValue(x);
     return result;
   }
 
-  //NENO LISTS
-  Future<List<Map<String, dynamic>>> getNenoMapList() async {
+  //KATIBA LISTS
+  Future<List<Map<String, dynamic>>> getKatibaMapList() async {
     Database db = await this.database;
-    var result = db.query(Texts.maneno);
+    var result = db.query(Texts.katiba);
     return result;
   }
 
-  Future<List<NenoModel>> getNenoList() async {
-    var nenoMapList = await getNenoMapList();
-    List<NenoModel> nenoList = List<NenoModel>();
-    for (int i = 0; i < nenoMapList.length; i++) {
-      nenoList.add(NenoModel.fromMapObject(nenoMapList[i]));
+  Future<List<KatibaModel>> getKatibaList() async {
+    var katibaMapList = await getKatibaMapList();
+    List<KatibaModel> katibaList = List<KatibaModel>();
+    for (int i = 0; i < katibaMapList.length; i++) {
+      katibaList.add(KatibaModel.fromMapObject(katibaMapList[i]));
     }
-    return nenoList;
+    return katibaList;
   }
 
-  //GENERIC LISTS
-  Future<List<Map<String, dynamic>>> getGenericMapList(String table) async {
-    Database db = await this.database;
-    var result = db.query(table);
-    return result;
-  }
-
-  Future<List<GenericModel>> getGenericList(String table) async {
-    var genericMapList = await getGenericMapList(table);
-    List<GenericModel> genericList = List<GenericModel>();
-    for (int i = 0; i < genericMapList.length; i++) {
-      genericList.add(GenericModel.fromMapObject(genericMapList[i]));
-    }
-    return genericList;
-  }
-
-  //NENO SEARCH
-  Future<List<Map<String, dynamic>>> getNenoSearchMapList(
+  //KATIBA SEARCH
+  Future<List<Map<String, dynamic>>> getKatibaSearchMapList(
       String searchThis) async {
     Database db = await this.database;
-    String sqlQuery = Texts.title + ' LIKE "%' + searchThis + '%"' +
-        ' OR ' + Texts.maana + ' LIKE "%' + searchThis + '%"';
+    String sqlQuery = Texts.title +
+        ' LIKE "%' +
+        searchThis +
+        '%"' +
+        ' OR ' +
+        Texts.maana +
+        ' LIKE "%' +
+        searchThis +
+        '%"';
 
-    var result = db.query(Texts.maneno, where: sqlQuery);
+    var result = db.query(Texts.katiba, where: sqlQuery);
     return result;
   }
 
-  Future<List<NenoModel>> getNenoSearch(String searchThis) async {
-    var nenoMapList = await getNenoSearchMapList(searchThis);
+  Future<List<KatibaModel>> getKatibaSearch(String searchThis) async {
+    var katibaMapList = await getKatibaSearchMapList(searchThis);
 
-    List<NenoModel> nenoList = List<NenoModel>();
-    // For loop to create a 'neno List' from a 'Map List'
-    for (int i = 0; i < nenoMapList.length; i++) {
-      nenoList.add(NenoModel.fromMapObject(nenoMapList[i]));
+    List<KatibaModel> katibaList = List<KatibaModel>();
+    // For loop to create a 'katiba List' from a 'Map List'
+    for (int i = 0; i < katibaMapList.length; i++) {
+      katibaList.add(KatibaModel.fromMapObject(katibaMapList[i]));
     }
-    return nenoList;
-  }
-
-  //GENERIC SEARCH
-  Future<List<Map<String, dynamic>>> getGenericSearchMapList(
-      String searchThis, String table) async {
-    Database db = await this.database;
-    String sqlQuery = Texts.title + ' LIKE "%' + searchThis + '%"' +
-        ' OR ' + Texts.maana + ' LIKE "%' + searchThis + '%"';
-
-    var result = db.query(table, where: sqlQuery);
-    return result;
-  }
-
-  Future<List<GenericModel>> getGenericSearch(String searchThis, String table) async {
-    var genericMapList = await getGenericSearchMapList(searchThis, table);
-
-    List<GenericModel> genericList = List<GenericModel>();
-    // For loop to create a 'generic List' from a 'Map List'
-    for (int i = 0; i < genericMapList.length; i++) {
-      genericList.add(GenericModel.fromMapObject(genericMapList[i]));
-    }
-    return genericList;
+    return katibaList;
   }
 
   //FAVOURITES LISTS
   Future<List<Map<String, dynamic>>> getFavoritesList() async {
     Database db = await this.database;
-    var result = db.query(Texts.maneno, where: Texts.isfav + '=1');
+    var result = db.query(Texts.katiba, where: Texts.isfav + '=1');
     return result;
   }
 
-  Future<List<NenoModel>> getFavorites() async {
-    var nenoMapList = await getFavoritesList();
+  Future<List<KatibaModel>> getFavorites() async {
+    var katibaMapList = await getFavoritesList();
 
-    List<NenoModel> nenoList = List<NenoModel>();
-    for (int i = 0; i < nenoMapList.length; i++) {
-      nenoList.add(NenoModel.fromMapObject(nenoMapList[i]));
+    List<KatibaModel> katibaList = List<KatibaModel>();
+    for (int i = 0; i < katibaMapList.length; i++) {
+      katibaList.add(KatibaModel.fromMapObject(katibaMapList[i]));
     }
 
-    return nenoList;
+    return katibaList;
   }
 
   //FAVORITE SEARCH
@@ -203,22 +148,30 @@ class SqliteHelper {
       String searchThis) async {
     Database db = await this.database;
     String extraQuery = 'AND ' + Texts.isfav + '=1 ';
-    String sqlQuery = Texts.title + ' LIKE "%' + searchThis + '%" ' + extraQuery +
-        'OR ' + Texts.maana + ' LIKE "%' + searchThis + '%" ' + extraQuery;
+    String sqlQuery = Texts.title +
+        ' LIKE "%' +
+        searchThis +
+        '%" ' +
+        extraQuery +
+        'OR ' +
+        Texts.maana +
+        ' LIKE "%' +
+        searchThis +
+        '%" ' +
+        extraQuery;
 
-    var result = db.query(Texts.maneno, where: sqlQuery);
+    var result = db.query(Texts.katiba, where: sqlQuery);
     return result;
   }
 
-  Future<List<NenoModel>> getFavSearch(String searchThis) async {
-    var nenoMapList = await getFavSearchMapList(searchThis);
+  Future<List<KatibaModel>> getFavSearch(String searchThis) async {
+    var katibaMapList = await getFavSearchMapList(searchThis);
 
-    List<NenoModel> nenoList = List<NenoModel>();
-    // For loop to create a 'neno List' from a 'Map List'
-    for (int i = 0; i < nenoMapList.length; i++) {
-      nenoList.add(NenoModel.fromMapObject(nenoMapList[i]));
+    List<KatibaModel> katibaList = List<KatibaModel>();
+    // For loop to create a 'katiba List' from a 'Map List'
+    for (int i = 0; i < katibaMapList.length; i++) {
+      katibaList.add(KatibaModel.fromMapObject(katibaMapList[i]));
     }
-    return nenoList;
+    return katibaList;
   }
-
 }

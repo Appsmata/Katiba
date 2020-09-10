@@ -4,7 +4,7 @@ import 'package:animated_floatactionbuttons/animated_floatactionbuttons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:katiba/helpers/SqliteHelper.dart';
-import 'package:katiba/models/NenoModel.dart';
+import 'package:katiba/models/KatibaModel.dart';
 import 'package:backdrop/backdrop.dart';
 import 'package:katiba/screens/FfSettingsQuick.dart';
 import 'package:share/share.dart';
@@ -13,32 +13,32 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_html/style.dart';
 
 class EeContentView extends StatefulWidget {
-  final NenoModel neno;
+  final KatibaModel katiba;
 
-  EeContentView(this.neno);
+  EeContentView(this.katiba);
 
   @override
   State<StatefulWidget> createState() {
-    return EeContentViewState(this.neno);
+    return EeContentViewState(this.katiba);
   }
 }
 
 class EeContentViewState extends State<EeContentView> {
-  EeContentViewState(this.neno);
+  EeContentViewState(this.katiba);
   final globalKey = new GlobalKey<ScaffoldState>();
   SqliteHelper db = SqliteHelper();
 
-  var appBar = AppBar(), nenoVerses;
-  NenoModel neno;
-  int curNeno = 0;
-  String nenoContent;
+  var appBar = AppBar(), katibaVerses;
+  KatibaModel katiba;
+  int curKatiba = 0;
+  String katibaContent;
   List<String> meanings, synonyms;
-  List<NenoModel> nenos;
+  List<KatibaModel> katibas;
 
   @override
   Widget build(BuildContext context) {
-    curNeno = neno.id;
-    nenoContent = neno.title + " ni neno la Kiswahili lenye maana:";
+    curKatiba = katiba.id;
+    katibaContent = katiba.title + " ni katiba la Kiswahili lenye maana:";
     bool isFavourited(int favorite) => favorite == 1 ?? false;
 
     if (meanings == null) {
@@ -56,7 +56,7 @@ class EeContentViewState extends State<EeContentView> {
         actions: <Widget>[
           IconButton(
             icon: Icon(
-              isFavourited(neno.isfav) ? Icons.star : Icons.star_border,
+              isFavourited(katiba.isfav) ? Icons.star : Icons.star_border,
             ),
             onPressed: () => favoriteThis(),
           )
@@ -71,8 +71,8 @@ class EeContentViewState extends State<EeContentView> {
               body: mainBody(),
               floatingActionButton: AnimatedFloatingActionButton(
                 fabButtons: floatingButtons(),
-                colorStartAnimation: Colors.blueAccent,
-                colorEndAnimation: Colors.blue,
+                colorStartAnimation: Colors.greenAccent,
+                colorEndAnimation: Colors.green,
                 animatedIconData: AnimatedIcons.menu_close,
               ),
             ),
@@ -96,7 +96,7 @@ class EeContentViewState extends State<EeContentView> {
           new Container(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Html(
-              data: "<h3>" + neno.title + "</h3>",
+              data: "<h3>" + katiba.title + "</h3>",
               style: {
                 "h3": Style(
                   fontSize: FontSize(30.0),
@@ -120,14 +120,17 @@ class EeContentViewState extends State<EeContentView> {
   }
 
   Widget listView(BuildContext context, int index) {
-    if (neno.visawe == meanings[index]) {
-      nenoContent =
-          nenoContent + Texts.visawe_vya + neno.title + " ni: " + neno.visawe;
+    if (katiba.body == meanings[index]) {
+      katibaContent = katibaContent +
+          Texts.visawe_vya +
+          katiba.title +
+          " ni: " +
+          katiba.type;
 
       return Container(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Html(
-          data: "<p><b>Visawe:</b> <i>" + neno.visawe + "</i></p>",
+          data: "<p><b>Visawe:</b> <i>" + katiba.type + "</i></p>",
           style: {
             "p": Style(
               fontSize: FontSize(25.0),
@@ -146,10 +149,11 @@ class EeContentViewState extends State<EeContentView> {
             strContents[1] +
             "</i></p>";
 
-        nenoContent = nenoContent + "\n- " + strContents[0] + " kwa mfano: ";
-        nenoContent = nenoContent + strContents[1];
+        katibaContent =
+            katibaContent + "\n- " + strContents[0] + " kwa mfano: ";
+        katibaContent = katibaContent + strContents[1];
       } else
-        nenoContent = nenoContent + "\n - " + meanings[index];
+        katibaContent = katibaContent + "\n - " + meanings[index];
 
       return Card(
         elevation: 2,
@@ -188,26 +192,26 @@ class EeContentViewState extends State<EeContentView> {
   }
 
   void copyItem() {
-    Clipboard.setData(ClipboardData(text: nenoContent + Texts.campaign));
+    Clipboard.setData(ClipboardData(text: katibaContent + Texts.campaign));
     globalKey.currentState.showSnackBar(new SnackBar(
-      content: new Text(SnackBarText.nenoCopied),
+      content: new Text(SnackBarText.itemCopied),
     ));
   }
 
   void shareItem() {
     Share.share(
-      nenoContent + Texts.campaign,
-      subject: "Shiriki neno: " + neno.title,
+      katibaContent + Texts.campaign,
+      subject: "Shiriki katiba: " + katiba.title,
     );
   }
 
   void favoriteThis() {
-    if (neno.isfav == 1)
-      db.favouriteNeno(neno, false);
+    if (katiba.isfav == 1)
+      db.favouriteKatiba(katiba, false);
     else
-      db.favouriteNeno(neno, true);
+      db.favouriteKatiba(katiba, true);
     globalKey.currentState.showSnackBar(new SnackBar(
-      content: new Text(neno.title + " " + SnackBarText.nenoLiked),
+      content: new Text(katiba.title + " " + SnackBarText.itemLiked),
     ));
     //notifyListeners();
   }
@@ -217,12 +221,12 @@ class EeContentViewState extends State<EeContentView> {
   }
 
   void processData() async {
-    nenoContent = neno.title;
+    katibaContent = katiba.title;
     meanings = [];
     synonyms = [];
 
     try {
-      String strMeaning = neno.maana;
+      String strMeaning = katiba.body;
       strMeaning = strMeaning.replaceAll("\\u201c", "");
       strMeaning = strMeaning.replaceAll("\\", "");
       strMeaning = strMeaning.replaceAll('"', '');
@@ -237,10 +241,10 @@ class EeContentViewState extends State<EeContentView> {
         meanings.add(strMeanings[0]);
       }
     } catch (Exception) {}
-    if (neno.visawe.length > 1) meanings.add(neno.visawe);
+    //if (katiba.visawe.length > 1) meanings.add(katiba.visawe);
 
     try {
-      var strSynonyms = neno.maana.split("|");
+      var strSynonyms = katiba.body.split("|");
 
       if (strSynonyms.length > 1) {
         for (int i = 0; i < strSynonyms.length; i++) {

@@ -7,8 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:sqflite/sqflite.dart';
 import 'dart:async';
 import 'package:path/path.dart';
-import 'package:katiba/models/callbacks/Generic.dart';
-import 'package:katiba/models/callbacks/Neno.dart';
+import 'package:katiba/models/callbacks/Katiba.dart';
 import 'package:katiba/utils/Constants.dart';
 
 class SqliteAssets {
@@ -44,11 +43,12 @@ class SqliteAssets {
     try {
       await Directory(dirname(path)).create(recursive: true);
     } catch (_) {}
-      
+
     // Copy from asset
     ByteData data = await rootBundle.load(join("assets", "katiba.db"));
-    List<int> bytes = data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
-    
+    List<int> bytes =
+        data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+
     // Write and flush the bytes written
     await File(path).writeAsBytes(bytes, flush: true);
 
@@ -57,34 +57,18 @@ class SqliteAssets {
     return assetDatabase;
   }
 
-  Future<List<Map<String, dynamic>>> getNenoMapList() async {
+  Future<List<Map<String, dynamic>>> getKatibaMapList() async {
     Database db = await this.database;
-    var result = db.query(Texts.maneno);
+    var result = db.query(Texts.katiba);
     return result;
   }
 
-  Future<List<Neno>> getNenoList() async {
-    var nenoMapList = await getNenoMapList();
-    List<Neno> nenoList = List<Neno>();
-    for (int i = 0; i < nenoMapList.length; i++) {
-      nenoList.add(Neno.fromMapObject(nenoMapList[i]));
+  Future<List<Katiba>> getKatibaList() async {
+    var katibaMapList = await getKatibaMapList();
+    List<Katiba> katibaList = List<Katiba>();
+    for (int i = 0; i < katibaMapList.length; i++) {
+      katibaList.add(Katiba.fromMapObject(katibaMapList[i]));
     }
-    return nenoList;
+    return katibaList;
   }
-
-  Future<List<Map<String, dynamic>>> getGenericMapList(String table) async {
-    Database db = await this.database;
-    var result = db.query(table);
-    return result;
-  }
-
-  Future<List<Generic>> getGenericList(String table) async {
-    var genericMapList = await getGenericMapList(table);
-    List<Generic> genericList = List<Generic>();
-    for (int i = 0; i < genericMapList.length; i++) {
-      genericList.add(Generic.fromMapObject(genericMapList[i]));
-    }
-    return genericList;
-  }
-
 }

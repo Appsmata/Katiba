@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:katiba/models/NenoModel.dart';
+import 'package:katiba/models/KatibaModel.dart';
 import 'package:katiba/helpers/SqliteHelper.dart';
 import 'package:katiba/screens/EeContentView.dart';
 import 'package:katiba/utils/Constants.dart';
@@ -18,13 +18,13 @@ class AsFavoritesState extends State<AsFavorites> {
   SqliteHelper db = SqliteHelper();
 
   Future<Database> dbFuture;
-  List<NenoModel> nenos;
+  List<KatibaModel> katibas;
 
   @override
   Widget build(BuildContext context) {
-    if (nenos == null) {
-      nenos = [];
-      updateNenoList();
+    if (katibas == null) {
+      katibas = [];
+      updateKatibaList();
     }
     return new Container(
       decoration: BoxDecoration(
@@ -58,8 +58,8 @@ class AsFavoritesState extends State<AsFavorites> {
 
             child: ListView.builder(
               physics: BouncingScrollPhysics(),
-              itemCount: nenos.length,
-              itemBuilder: nenoListView,
+              itemCount: katibas.length,
+              itemBuilder: katibaListView,
             ),
           ),
         ],
@@ -78,71 +78,72 @@ class AsFavoritesState extends State<AsFavorites> {
             hintText: Texts.searchNow,
             hintStyle: TextStyle(fontSize: 18)),
         onChanged: (value) {
-          searchNeno();
+          searchKatiba();
         },
       ),
     );
   }
 
-  Widget nenoListView(BuildContext context, int index) {
-    int category = nenos[index].id;
-    String nenobook = "";
-    String nenoTitle = nenos[index].title;
+  Widget katibaListView(BuildContext context, int index) {
+    int category = katibas[index].id;
+    String katibabook = "";
+    String katibaTitle = katibas[index].title;
 
-    var verses = nenos[index].maana.split("\\n\\n");
-    var nenoConts = nenos[index].maana.split("\\n");
-    String nenoContent = nenoConts[0] + ' ' + nenoConts[1] + " ...";
+    var verses = katibas[index].body.split("\\n\\n");
+    var katibaConts = katibas[index].body.split("\\n");
+    String katibaContent = katibaConts[0] + ' ' + katibaConts[1] + " ...";
 
     return Card(
       elevation: 2,
       child: ListTile(
-        title: Text(nenoTitle,
+        title: Text(katibaTitle,
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-        subtitle: Text(nenoContent, style: TextStyle(fontSize: 18)),
+        subtitle: Text(katibaContent, style: TextStyle(fontSize: 18)),
         onTap: () {
-          //navigateToNeno(nenos[index], nenoTitle,
-          //    "Neno #" + nenos[index].number.toString() + " - " + nenobook);
+          //navigateToKatiba(katibas[index], katibaTitle,
+          //    "Katiba #" + katibas[index].number.toString() + " - " + katibabook);
         },
       ),
     );
   }
 
-  void updateNenoList() {
+  void updateKatibaList() {
     dbFuture = db.initializeDatabase();
     dbFuture.then((database) {
-      Future<List<NenoModel>> nenoListFuture = db.getFavorites();
-      nenoListFuture.then((nenoList) {
+      Future<List<KatibaModel>> katibaListFuture = db.getFavorites();
+      katibaListFuture.then((katibaList) {
         setState(() {
-          nenos = nenoList;
+          katibas = katibaList;
           progressWidget.hideProgress();
         });
       });
     });
   }
 
-  void searchNeno() {
+  void searchKatiba() {
     String searchThis = txtSearch.text;
     if (searchThis.length > 0) {
-      nenos.clear();
+      katibas.clear();
       dbFuture = db.initializeDatabase();
       dbFuture.then((database) {
-        Future<List<NenoModel>> nenoListFuture =
+        Future<List<KatibaModel>> katibaListFuture =
             db.getFavSearch(txtSearch.text);
-        nenoListFuture.then((nenoList) {
+        katibaListFuture.then((katibaList) {
           setState(() {
-            nenos = nenoList;
+            katibas = katibaList;
           });
         });
       });
     } else
-      updateNenoList();
+      updateKatibaList();
   }
 
-  void navigateToNeno(NenoModel neno, String title, String nenobook) async {
+  void navigateToKatiba(
+      KatibaModel katiba, String title, String katibabook) async {
     bool haschorus = false;
-    if (neno.maana.contains("CHORUS")) haschorus = true;
+    //if (katiba.maana.contains("CHORUS")) haschorus = true;
     await Navigator.push(context, MaterialPageRoute(builder: (context) {
-      //return EeContentView(neno, haschorus, title, nenobook);
+      //return EeContentView(katiba, haschorus, title, katibabook);
     }));
   }
 }

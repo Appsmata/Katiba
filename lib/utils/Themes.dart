@@ -6,8 +6,8 @@ final asLightTheme = _buildLightTheme();
 final asDarkTheme = _buildDarkTheme();
 
 ThemeData _buildLightTheme() {
-  const Color primaryColor = Colors.blue;
-  const Color secondaryColor = Colors.blueAccent;
+  const Color primaryColor = Colors.green;
+  const Color secondaryColor = Colors.greenAccent;
   final ColorScheme colorScheme = const ColorScheme.light().copyWith(
     primary: primaryColor,
     secondary: secondaryColor,
@@ -19,7 +19,7 @@ ThemeData _buildLightTheme() {
     primaryColor: primaryColor,
     buttonColor: primaryColor,
     indicatorColor: Colors.white,
-    toggleableActiveColor: Colors.blue,
+    toggleableActiveColor: Colors.green,
     splashColor: Colors.white24,
     splashFactory: InkRipple.splashFactory,
     accentColor: secondaryColor,
@@ -40,8 +40,8 @@ ThemeData _buildLightTheme() {
 }
 
 ThemeData _buildDarkTheme() {
-  const Color primaryColor = Colors.blue;
-  const Color secondaryColor = Colors.blueAccent;
+  const Color primaryColor = Colors.green;
+  const Color secondaryColor = Colors.greenAccent;
   final ColorScheme colorScheme = const ColorScheme.dark().copyWith(
     primary: primaryColor,
     secondary: secondaryColor,
@@ -50,7 +50,7 @@ ThemeData _buildDarkTheme() {
     brightness: Brightness.dark,
     accentColorBrightness: Brightness.dark,
     primaryColor: primaryColor,
-    primaryColorDark: Colors.blue,
+    primaryColorDark: Colors.green,
     primaryColorLight: secondaryColor,
     buttonColor: primaryColor,
     indicatorColor: Colors.white,

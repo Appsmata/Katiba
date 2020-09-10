@@ -76,7 +76,7 @@ class AsProgressDialogState extends State<AsProgressDialog> {
                         height: 120,
                         decoration: new BoxDecoration(
                             color: containerColor,
-                            border: Border.all(color: Colors.lightBlueAccent),
+                            border: Border.all(color: Colors.lightGreenAccent),
                             boxShadow: [BoxShadow(blurRadius: 5)],
                             borderRadius: new BorderRadius.all(
                                 new Radius.circular(borderRadius))),
@@ -114,7 +114,7 @@ class AsProgressDialogState extends State<AsProgressDialog> {
 
   Widget _getCircularProgress() {
     return new CircularProgressIndicator(
-        valueColor: new AlwaysStoppedAnimation(Colors.blue));
+        valueColor: new AlwaysStoppedAnimation(Colors.green));
   }
 
   void hideProgress() {
