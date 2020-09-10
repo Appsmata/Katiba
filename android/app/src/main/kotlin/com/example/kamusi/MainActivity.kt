@@ -1,4 +1,4 @@
-package com.kazibora.katiba
+package com.jackson_siro.katiba
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity

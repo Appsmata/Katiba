@@ -42,7 +42,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.kazibora.katiba"
+        applicationId "com.jackson_siro.katiba"
         minSdkVersion 18
         targetSdkVersion 29
         versionCode 3

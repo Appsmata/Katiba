@@ -1,12 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.kazibora.katiba">
+    package="com.jackson_siro.katiba">
 
     <application
         android:name="io.flutter.app.FlutterApplication"
         android:label="Katiba"
         android:allowBackup="true"
         android:supportsRtl="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/launcher_icon"
         android:usesCleartextTraffic="true" >
         
         <activity
