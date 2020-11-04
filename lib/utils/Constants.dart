@@ -6,13 +6,16 @@ class SharedPreferenceKeys {
   static const String DarkMode = "katiba_dark_mode";
 }
 
-class AsProgressDialogTitles {
+class LangStrings {
+  static const String DarkMode = "Dark Mode";
+  static const String DisplaySettings = "Display Preferences";
+  static const String OkayDone = "OKAY, DONE";
+  static const String OkayGotIt = "OKAY, GOT IT";
+  static const String GoBack = "GO BACK";
+  static const String DoneSelecting = "Done with selecting?";
   static const String inProgress = "In Progress ...";
   static const String gettingReady = "Getting Ready ...";
   static const String somePatience = "Eish! ... Just a minute ...";
-}
-
-class Texts {
   static const String appName = "Kenyan Constitution";
   static const String campaign =
       "\n\n#Katiba #SeriouslyKenyan \n\nhttps://play.google.com/store/apps/details?id=com.jackson_siro.katiba ";
@@ -29,20 +32,12 @@ class Texts {
   static const String number = 'number';
   static const String title = 'title';
   static const String body = 'body';
-  static const String maana = 'maana';
-  static const String visawe = 'visawe';
-  static const String mnyambuliko = 'mnyambuliko';
   static const String isfav = 'isfav';
   static const String views = 'views';
   static const String notes = 'notes';
-}
-
-class Tooltips {
-  static const String copyThis = "Nakili kwa Clipboard";
+  static const String copyThis = "Copy to Clipboard";
   static const String shareThis = "Share";
-}
 
-class SnackBarText {
   static const String noInternetConnection = "No internet connection";
   static const String itemCopied = " copied to clipboard!";
   static const String itemLiked = " liked!";
@@ -51,25 +46,25 @@ class SnackBarText {
 
 class Queries {
   static const String createKatibaTable = 'CREATE TABLE ' +
-      Texts.katiba +
+      LangStrings.katiba +
       '(' +
-      Texts.id +
+      LangStrings.id +
       ' INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, ' +
-      Texts.type +
+      LangStrings.type +
       ' VARCHAR(20), ' +
-      Texts.refid +
+      LangStrings.refid +
       ' INTEGER NOT NULL DEFAULT 0, ' +
-      Texts.number +
+      LangStrings.number +
       ' INTEGER NOT NULL DEFAULT 0, ' +
-      Texts.title +
+      LangStrings.title +
       ' VARCHAR(100), ' +
-      Texts.body +
+      LangStrings.body +
       ' VARCHAR(2000),' +
-      Texts.notes +
+      LangStrings.notes +
       ' VARCHAR(500), ' +
-      Texts.isfav +
+      LangStrings.isfav +
       ' INTEGER NOT NULL DEFAULT 0, ' +
-      Texts.views +
+      LangStrings.views +
       ' INTEGER NOT NULL DEFAULT 0' +
       ");";
 }

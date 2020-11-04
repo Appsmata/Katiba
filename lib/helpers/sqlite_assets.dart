@@ -7,8 +7,8 @@ import 'package:flutter/services.dart';
 import 'package:sqflite/sqflite.dart';
 import 'dart:async';
 import 'package:path/path.dart';
-import 'package:katiba/models/callbacks/Katiba.dart';
-import 'package:katiba/utils/Constants.dart';
+import 'package:katiba/models/callbacks/katiba.dart';
+import 'package:katiba/utils/constants.dart';
 
 class SqliteAssets {
   static SqliteAssets sqliteHelper; // Singleton DatabaseHelper
@@ -59,7 +59,7 @@ class SqliteAssets {
 
   Future<List<Map<String, dynamic>>> getKatibaMapList() async {
     Database db = await this.database;
-    var result = db.query(Texts.katiba);
+    var result = db.query(LangStrings.katiba);
     return result;
   }
 

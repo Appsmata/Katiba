@@ -6,8 +6,8 @@ import 'dart:async';
 import 'dart:io';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:katiba/models/KatibaModel.dart';
-import 'package:katiba/utils/Constants.dart';
+import 'package:katiba/models/katiba_model.dart';
+import 'package:katiba/utils/constants.dart';
 
 class SqliteHelper {
   static SqliteHelper sqliteHelper; // Singleton DatabaseHelper
@@ -49,7 +49,7 @@ class SqliteHelper {
     Database db = await this.database;
     katiba.isfav = katiba.views = 0;
 
-    var result = await db.insert(Texts.katiba, katiba.toMap());
+    var result = await db.insert(LangStrings.katiba, katiba.toMap());
     return result;
   }
 
@@ -60,13 +60,13 @@ class SqliteHelper {
     else
       katiba.isfav = 0;
     var result = await db.rawUpdate('UPDATE ' +
-        Texts.katiba +
+        LangStrings.katiba +
         ' SET ' +
-        Texts.isfav +
+        LangStrings.isfav +
         '=' +
         katiba.isfav.toString() +
         ' WHERE ' +
-        Texts.id +
+        LangStrings.id +
         '=' +
         katiba.id.toString());
     return result;
@@ -75,7 +75,7 @@ class SqliteHelper {
   Future<int> getKatibaCount() async {
     Database db = await this.database;
     List<Map<String, dynamic>> x =
-        await db.rawQuery('SELECT COUNT (*) from ' + Texts.katiba);
+        await db.rawQuery('SELECT COUNT (*) from ' + LangStrings.katiba);
     int result = Sqflite.firstIntValue(x);
     return result;
   }
@@ -83,7 +83,7 @@ class SqliteHelper {
   //KATIBA LISTS
   Future<List<Map<String, dynamic>>> getKatibaMapList() async {
     Database db = await this.database;
-    var result = db.query(Texts.katiba);
+    var result = db.query(LangStrings.katiba);
     return result;
   }
 
@@ -100,17 +100,10 @@ class SqliteHelper {
   Future<List<Map<String, dynamic>>> getKatibaSearchMapList(
       String searchThis) async {
     Database db = await this.database;
-    String sqlQuery = Texts.title +
-        ' LIKE "%' +
-        searchThis +
-        '%"' +
-        ' OR ' +
-        Texts.maana +
-        ' LIKE "%' +
-        searchThis +
-        '%"';
+    String sqlQuery = LangStrings.title + ' LIKE "%' + searchThis + '%"' +
+        ' OR ' + LangStrings.body + ' LIKE "%' + searchThis + '%"';
 
-    var result = db.query(Texts.katiba, where: sqlQuery);
+    var result = db.query(LangStrings.katiba, where: sqlQuery);
     return result;
   }
 
@@ -128,7 +121,7 @@ class SqliteHelper {
   //FAVOURITES LISTS
   Future<List<Map<String, dynamic>>> getFavoritesList() async {
     Database db = await this.database;
-    var result = db.query(Texts.katiba, where: Texts.isfav + '=1');
+    var result = db.query(LangStrings.katiba, where: LangStrings.isfav + '=1');
     return result;
   }
 
@@ -147,20 +140,11 @@ class SqliteHelper {
   Future<List<Map<String, dynamic>>> getFavSearchMapList(
       String searchThis) async {
     Database db = await this.database;
-    String extraQuery = 'AND ' + Texts.isfav + '=1 ';
-    String sqlQuery = Texts.title +
-        ' LIKE "%' +
-        searchThis +
-        '%" ' +
-        extraQuery +
-        'OR ' +
-        Texts.maana +
-        ' LIKE "%' +
-        searchThis +
-        '%" ' +
-        extraQuery;
+    String extraQuery = 'AND ' + LangStrings.isfav + '=1 ';
+    String sqlQuery = LangStrings.title + ' LIKE "%' + searchThis + '%" ' + extraQuery +
+        'OR ' + LangStrings.body + ' LIKE "%' + searchThis + '%" ' + extraQuery;
 
-    var result = db.query(Texts.katiba, where: sqlQuery);
+    var result = db.query(LangStrings.katiba, where: sqlQuery);
     return result;
   }
 

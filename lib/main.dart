@@ -4,10 +4,10 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:katiba/helpers/AppSettings.dart';
-import 'package:katiba/screens/BbSplash.dart';
-import 'package:katiba/screens/AppStart.dart';
-import 'package:katiba/utils/Themes.dart';
+import 'package:katiba/helpers/app_settings.dart';
+import 'package:katiba/screens/bb_splash.dart';
+import 'package:katiba/screens/app_start.dart';
+import 'package:katiba/utils/themes.dart';
 
 void main() {
   Crashlytics.instance.enableInDevMode = true;

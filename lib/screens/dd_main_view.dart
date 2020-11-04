@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:katiba/utils/Constants.dart';
-import 'package:katiba/widgets/AsSearch.dart';
+import 'package:katiba/utils/constants.dart';
+import 'package:katiba/widgets/as_search.dart';
 
-class DdHomeView extends StatefulWidget {
-  const DdHomeView({Key key}) : super(key: key);
+class DdMainView extends StatefulWidget {
+  const DdMainView({Key key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => DdHomeViewState();
+  State<StatefulWidget> createState() => DdMainViewState();
 }
 
-class DdHomeViewState extends State<DdHomeView> {
+class DdMainViewState extends State<DdMainView> {
   int _currentTabIndex = 0;
   List<String> blocks = [
     'Preamble',
@@ -21,15 +21,14 @@ class DdHomeViewState extends State<DdHomeView> {
   Widget build(BuildContext context) {
     AsSearch searchview = AsSearch.getList();
     final _kTabPages = <Widget>[
-      Center(child: gridView()),
       Center(child: searchview),
+      Center(child: Icon(Icons.history, size: 64.0, color: Colors.green)),
       Center(child: Icon(Icons.star_border, size: 64.0, color: Colors.green)),
     ];
     final _kBottmonNavBarItems = <BottomNavigationBarItem>[
-      BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('Home')),
       BottomNavigationBarItem(icon: Icon(Icons.search), title: Text('Search')),
-      BottomNavigationBarItem(
-          icon: Icon(Icons.star), title: Text('Favourites')),
+      BottomNavigationBarItem(icon: Icon(Icons.history), title: Text('History')),
+      BottomNavigationBarItem(icon: Icon(Icons.star), title: Text('Favourites')),
     ];
 
     assert(_kTabPages.length == _kBottmonNavBarItems.length);
@@ -45,7 +44,7 @@ class DdHomeViewState extends State<DdHomeView> {
     );
     return Scaffold(
       appBar: AppBar(
-        title: Text(Texts.appName),
+        title: Text(LangStrings.appName),
       ),
       body: _kTabPages[_currentTabIndex],
       bottomNavigationBar: bottomNavBar,

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:katiba/models/KatibaModel.dart';
-import 'package:katiba/helpers/SqliteHelper.dart';
-import 'package:katiba/screens/EeContentView.dart';
-import 'package:katiba/utils/Constants.dart';
-import 'package:katiba/widgets/AsProgressWidget.dart';
+import 'package:katiba/models/katiba_model.dart';
+import 'package:katiba/helpers/sqlite_helper.dart';
+import 'package:katiba/screens/ee_content_view.dart';
+import 'package:katiba/utils/constants.dart';
+import 'package:katiba/widgets/as_progress.dart';
 
 class AsFavorites extends StatefulWidget {
   @override
@@ -12,8 +12,8 @@ class AsFavorites extends StatefulWidget {
 }
 
 class AsFavoritesState extends State<AsFavorites> {
-  AsProgressWidget progressWidget =
-      AsProgressWidget.getProgressWidget(AsProgressDialogTitles.somePatience);
+  AsProgress progressWidget =
+      AsProgress.getProgressWidget(LangStrings.somePatience);
   TextEditingController txtSearch = new TextEditingController(text: "");
   SqliteHelper db = SqliteHelper();
 
@@ -75,7 +75,7 @@ class AsFavoritesState extends State<AsFavorites> {
         style: TextStyle(fontSize: 18),
         decoration: InputDecoration(
             prefixIcon: Icon(Icons.search),
-            hintText: Texts.searchNow,
+            hintText: LangStrings.searchNow,
             hintStyle: TextStyle(fontSize: 18)),
         onChanged: (value) {
           searchKatiba();

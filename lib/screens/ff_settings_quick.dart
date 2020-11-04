@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:katiba/helpers/AppSettings.dart';
+import 'package:katiba/helpers/app_settings.dart';
 
 class FfSettingsQuick extends StatelessWidget {
   const FfSettingsQuick({Key key}) : super(key: key);

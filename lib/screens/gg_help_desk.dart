@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:backdrop/backdrop.dart';
-import 'package:katiba/screens/FfSettingsQuick.dart';
+import 'package:katiba/screens/ff_settings_quick.dart';
 import 'package:vertical_tabs/vertical_tabs.dart';
-import 'package:katiba/utils/Constants.dart';
+import 'package:katiba/utils/constants.dart';
 
-class GgDonate extends StatefulWidget {
+class GgHelpDesk extends StatefulWidget {
   @override
-  createState() => new GgDonateState();
+  createState() => new GgHelpDeskState();
 }
 
-class GgDonateState extends State<GgDonate> {
+class GgHelpDeskState extends State<GgHelpDesk> {
   final globalKey = new GlobalKey<ScaffoldState>();
   List<String> titles, details, images;
 
@@ -18,24 +18,20 @@ class GgDonateState extends State<GgDonate> {
     details = [];
     images = [];
 
-    titles.add("M-Pesa");
-    titles.add("Equitel");
-    titles.add("Airtel");
-    titles.add("PayPal");
-    titles.add("VisaCard");
+    titles.add("Support");
+    titles.add("App Reviews");
+    titles.add("Open Source");
 
-    images.add("mpesa");
-    images.add("equitel");
-    images.add("airtel");
-    images.add("paypal");
-    images.add("visa_mastercard");
+    images.add("support");
+    images.add("review");
+    images.add("github");
 
     details.add(
-        "BONYEZA:\n* 483 * 57 * 33112 #\n\n\n\nPAYBILL: 891300\n\nAKAUNTI: 33112");
-    details.add("BUSINESS NUMBER: 891300\n\nAKAUNTI: 33112");
-    details.add("BUSINESS NAME: MCHANGA\n\nREFERENCE: 33112");
-    details.add("ADDRESS:\n\ttunaboresha [at] gmail.com");
-    details.add("Itakuwa tayari hivi karibuni");
+        "SIMU: +2547 -\nBARUA PEPE: tunaboresha [at] gmail.com\nTOVUTI: https://kazibora.github.io");
+    details.add(
+        "Iwapo unafurahia kitumizi (app) chetu au haufurahii tafadhali tujulishe kwa kuacha review yako kwenye Google Play Store");
+    details.add(
+        "Iwapo wewe ni Msanidi Kitumizi (App Developer), source code ya kitumizi hiki yapatikana bila malipo kwenye GitHub:\n\n Https://GitHub.com/Kazibora/Katiba");
   }
 
   @override
@@ -52,7 +48,7 @@ class GgDonateState extends State<GgDonate> {
         moveToLastScreen();
       },
       child: BackdropScaffold(
-        title: Text('Tuunge Mkono, Changia'),
+        title: Text('Usaidizi'),
         iconPosition: BackdropIconPosition.action,
         headerHeight: 120,
         frontLayer: Center(
@@ -107,9 +103,8 @@ class GgDonateState extends State<GgDonate> {
                     child: new Column(
                       children: <Widget>[
                         Image(
-                          image: new AssetImage("assets/images/donation_" +
-                              images[index] +
-                              ".png"),
+                          image: new AssetImage(
+                              "assets/images/" + images[index] + ".png"),
                           height: 150.0,
                         ),
                         Container(

@@ -2,7 +2,7 @@
 
 import 'dart:async';
 
-import 'package:katiba/utils/Constants.dart';
+import 'package:katiba/utils/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Preferences {

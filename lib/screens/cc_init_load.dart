@@ -2,15 +2,15 @@
 
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:katiba/models/KatibaModel.dart';
-import 'package:katiba/models/callbacks/Katiba.dart';
+import 'package:katiba/models/katiba_model.dart';
+import 'package:katiba/models/callbacks/katiba.dart';
 import 'package:katiba/utils/Constants.dart';
 import 'package:katiba/utils/Preferences.dart';
-import 'package:katiba/helpers/SqliteAssets.dart';
-import 'package:katiba/helpers/SqliteHelper.dart';
-import 'package:katiba/screens/AppStart.dart';
-import 'package:katiba/widgets/AsTextView.dart';
-import 'package:katiba/widgets/AsLineProgress.dart';
+import 'package:katiba/helpers/sqlite_assets.dart';
+import 'package:katiba/helpers/sqlite_helper.dart';
+import 'package:katiba/screens/app_start.dart';
+import 'package:katiba/widgets/as_textview.dart';
+import 'package:katiba/widgets/as_line_progress.dart';
 import 'package:sqflite/sqflite.dart';
 
 class CcInitLoad extends StatefulWidget {
@@ -22,7 +22,7 @@ class CcInitLoad extends StatefulWidget {
 
 class CcInitLoadState extends State<CcInitLoad> {
   AsTextView textIndicator =
-      AsTextView.setUp(AsProgressDialogTitles.gettingReady, 25, true);
+      AsTextView.setUp(LangStrings.gettingReady, 25, true);
   AsTextView textProgress = AsTextView.setUp("", 25, true);
   AsLineProgress lineProgress = AsLineProgress.setUp(300, 0);
   final globalKey = new GlobalKey<ScaffoldState>();

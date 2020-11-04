@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class AsProgressWidget extends StatefulWidget {
+class AsProgress extends StatefulWidget {
   Color backgroundColor;
   Color color;
   Color containerColor;
@@ -8,7 +8,7 @@ class AsProgressWidget extends StatefulWidget {
   String text;
   AsProgressWidgetState progressWidgetState;
 
-  AsProgressWidget(
+  AsProgress(
       {this.backgroundColor = Colors.black54,
       this.color = Colors.white,
       this.containerColor = Colors.transparent,
@@ -36,7 +36,7 @@ class AsProgressWidget extends StatefulWidget {
   }
 
   static Widget getProgressWidget(String title) {
-    return new AsProgressWidget(
+    return new AsProgress(
       backgroundColor: Colors.black12,
       color: Colors.black,
       containerColor: Colors.white,
@@ -46,7 +46,7 @@ class AsProgressWidget extends StatefulWidget {
   }
 }
 
-class AsProgressWidgetState extends State<AsProgressWidget> {
+class AsProgressWidgetState extends State<AsProgress> {
   Color backgroundColor;
   Color color;
   Color containerColor;

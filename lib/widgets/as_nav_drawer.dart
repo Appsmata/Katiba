@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:katiba/screens/GgDonate.dart';
-import 'package:katiba/screens/GgHelpDesk.dart';
+import 'package:katiba/screens/gg_donate.dart';
+import 'package:katiba/screens/gg_help_desk.dart';
 
 class AsNavDrawer extends StatefulWidget {
   @override

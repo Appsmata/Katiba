@@ -4,9 +4,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:katiba/screens/CcInitLoad.dart';
-import 'package:katiba/screens/DdHomeView.dart';
-import 'package:katiba/utils/Preferences.dart';
+import 'package:katiba/screens/cc_init_load.dart';
+import 'package:katiba/screens/dd_home_view.dart';
+import 'package:katiba/utils/preferences.dart';
 
 class AppStart extends StatefulWidget {
   @override
