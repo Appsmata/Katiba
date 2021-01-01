@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.jackson_siro.katiba">
+    package="com.appsmata.katiba">
 
     <application
         android:name="io.flutter.app.FlutterApplication"

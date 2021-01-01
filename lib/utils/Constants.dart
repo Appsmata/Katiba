@@ -18,7 +18,7 @@ class LangStrings {
   static const String somePatience = "Eish! ... Just a minute ...";
   static const String appName = "Kenyan Constitution";
   static const String campaign =
-      "\n\n#Katiba #SeriouslyKenyan \n\nhttps://play.google.com/store/apps/details?id=com.jackson_siro.katiba ";
+      "\n\n#Katiba #SeriouslyKenyan \n\nhttps://play.google.com/store/apps/details?id=com.appsmata.katiba ";
   static const String visawe_vya = "\n\nVisawe (synonyms) vya katiba ";
   static const String searchNow = "Search ";
   static const String katiba = 'katiba';
